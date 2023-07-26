@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AnnouncementPlatformAPI</name>
+    </assembly>
+    <members>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.GetMessage">
+            <summary>
+            Get Message.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.CreateItem">
+            <summary>
+            Create Message.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.UpdateItem(System.Int32)">
+            <summary>
+            Update Message.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.DeleteItem(System.Int32)">
+            <summary>
+            Delete Message.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.GetCategories">
+            <summary>
+            Gets all categories.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.GetCategoryById(System.Int32)">
+            <summary>
+            Gets category by it's id.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.DeleteCategoryById(System.Int32)">
+            <summary>
+            Deletes category by id.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.AddCategory(AnnouncementPlatformAPI.Models.Category)">
+            <summary>
+            Adds a new category.
+            </summary>
+        </member>
+    </members>
+</doc>
