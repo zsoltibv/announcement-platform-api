@@ -4,24 +4,29 @@
         <name>AnnouncementPlatformAPI</name>
     </assembly>
     <members>
-        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.GetMessage">
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.GetAnnouncements">
             <summary>
-            Get Message.
+            Get Announcements.
             </summary>
         </member>
-        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.CreateItem">
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.CreateAnnouncement(AnnouncementPlatformAPI.Models.AnnouncementWithoudId)">
             <summary>
-            Create Message.
+            Create Announcement.
             </summary>
         </member>
-        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.UpdateItem(System.Int32)">
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.UpdateAnnouncement(System.Guid,AnnouncementPlatformAPI.Models.AnnouncementWithoudId)">
             <summary>
-            Update Message.
+            Update Announcement.
             </summary>
         </member>
-        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.DeleteItem(System.Int32)">
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.DeleteAnnouncement(System.Guid)">
             <summary>
-            Delete Message.
+            Delete Announcement.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.UpdateTitleAndDescription(System.Guid,AnnouncementPlatformAPI.Models.AnnouncementUpdateModel)">
+            <summary>
+            Partially Update Announcement(title and description).
             </summary>
         </member>
         <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.GetCategories">

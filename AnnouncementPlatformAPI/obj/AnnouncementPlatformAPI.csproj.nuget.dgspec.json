@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\trimble practica\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI.csproj": {}
+    "C:\\trimble-practica\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI.csproj": {}
   },
   "projects": {
-    "C:\\trimble practica\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI.csproj": {
+    "C:\\trimble-practica\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\trimble practica\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI.csproj",
+        "projectUniqueName": "C:\\trimble-practica\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI.csproj",
         "projectName": "AnnouncementPlatformAPI",
-        "projectPath": "C:\\trimble practica\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI.csproj",
+        "projectPath": "C:\\trimble-practica\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI.csproj",
         "packagesPath": "C:\\Users\\zsolti\\.nuget\\packages\\",
-        "outputPath": "C:\\trimble practica\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI\\obj\\",
+        "outputPath": "C:\\trimble-practica\\AnnouncementPlatformAPI\\AnnouncementPlatformAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\zsolti\\AppData\\Roaming\\NuGet\\NuGet.Config",
