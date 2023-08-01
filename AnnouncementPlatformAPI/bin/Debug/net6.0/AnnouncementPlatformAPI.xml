@@ -9,9 +9,14 @@
             Get Announcements.
             </summary>
         </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.GetAnnouncementById(System.Guid)">
+            <summary>
+            Get Announcement by id.
+            </summary>
+        </member>
         <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.CreateAnnouncement(AnnouncementPlatformAPI.Models.AnnouncementWithoudId)">
             <summary>
-            Create Announcement.
+            Create a new announcement.
             </summary>
         </member>
         <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.UpdateAnnouncement(System.Guid,AnnouncementPlatformAPI.Models.AnnouncementWithoudId)">
@@ -24,9 +29,9 @@
             Delete Announcement.
             </summary>
         </member>
-        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.UpdateTitleAndDescription(System.Guid,AnnouncementPlatformAPI.Models.AnnouncementUpdateModel)">
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.GetAnnouncementsByCategoryId(System.String)">
             <summary>
-            Partially Update Announcement(title and description).
+            Get announcements by category id.
             </summary>
         </member>
         <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.GetCategories">

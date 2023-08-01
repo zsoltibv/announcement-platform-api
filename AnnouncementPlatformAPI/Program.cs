@@ -1,3 +1,5 @@
+using AnnouncementPlatformAPI.Models;
+using AnnouncementPlatformAPI.Services;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -15,6 +17,9 @@ builder.Services.AddSwaggerGen(c =>
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     c.IncludeXmlComments(xmlPath);
 });
+
+//Init Announcement Service
+builder.Services.AddSingleton<IAnnouncementCollectionService, AnnouncementCollectionService>();
 
 var app = builder.Build();
 

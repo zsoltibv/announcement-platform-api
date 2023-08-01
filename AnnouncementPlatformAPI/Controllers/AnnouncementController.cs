@@ -1,4 +1,5 @@
 ﻿using AnnouncementPlatformAPI.Models;
+using AnnouncementPlatformAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AnnouncementPlatformAPI.Controllers
@@ -7,14 +8,12 @@ namespace AnnouncementPlatformAPI.Controllers
     [Route("api/[controller]")]
     public class AnnouncementController : ControllerBase
     {
+        IAnnouncementCollectionService _announcementCollectionService;
 
-        static List<Announcement> _announcements = new List<Announcement> {
-            new Announcement { Id = Guid.NewGuid(), CategoryId = "1", Title = "First Announcement", Description = "First Announcement Description" , Author = "Author_1"},
-            new Announcement { Id = Guid.NewGuid(), CategoryId = "1", Title = "Second Announcement", Description = "Second Announcement Description", Author = "Author_1" },
-            new Announcement { Id = Guid.NewGuid(), CategoryId = "1", Title = "Third Announcement", Description = "Third Announcement Description", Author = "Author_2"  },
-            new Announcement { Id = Guid.NewGuid(), CategoryId = "1", Title = "Fourth Announcement", Description = "Fourth Announcement Description", Author = "Author_3"  },
-            new Announcement { Id = Guid.NewGuid(), CategoryId = "1", Title = "Fifth Announcement", Description = "Fifth Announcement Description", Author = "Author_4"  }
-        };
+        public AnnouncementController(IAnnouncementCollectionService announcementCollectionService)
+        {
+            _announcementCollectionService = announcementCollectionService ?? throw new ArgumentNullException(nameof(AnnouncementCollectionService));
+        }
 
         /// <summary>
         /// Get Announcements.
@@ -22,31 +21,35 @@ namespace AnnouncementPlatformAPI.Controllers
         [HttpGet]
         public IActionResult GetAnnouncements()
         {
-            return Ok(_announcements);
+            List<Announcement> Announcements = _announcementCollectionService.GetAll();
+            return Ok(Announcements);
         }
 
         /// <summary>
-        /// Create Announcement.
+        /// Get Announcement by id.
+        /// </summary>
+        [HttpGet("{id}")]
+        public IActionResult GetAnnouncementById(Guid id)
+        {
+            var announcement = _announcementCollectionService.Get(id);
+            if(announcement == null)
+            {
+                return NotFound();
+            }
+            return Ok(announcement);
+        }
+
+        /// <summary>
+        /// Create a new announcement.
         /// </summary>
         [HttpPost]
         public IActionResult CreateAnnouncement([FromBody] AnnouncementWithoudId announcement)
         {
-            if (announcement == null)
+            if (_announcementCollectionService.Create(announcement))
             {
-                return BadRequest("Announcement cannot be null");
+                return Ok("Announcement has been created!");
             }
-
-            Announcement newAnnouncement = new()
-            {
-                Id = Guid.NewGuid(),
-                CategoryId = announcement.CategoryId,
-                Title = announcement.Title,
-                Description = announcement.Description,
-                Author = announcement.Author,
-            };
-
-            _announcements.Add(newAnnouncement);
-            return Ok(newAnnouncement);
+            return BadRequest();
         }
 
         /// <summary>
@@ -55,30 +58,11 @@ namespace AnnouncementPlatformAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateAnnouncement(Guid id, [FromBody] AnnouncementWithoudId updatedAnnouncement)
         {
-            if (updatedAnnouncement == null)
+            if(_announcementCollectionService.Update(id, updatedAnnouncement))
             {
-                return BadRequest("Invalid announcement data.");
+                return Ok("Announcement has been updated!");
             }
-
-            var announcementIndex = _announcements.FindIndex(a => a.Id == id);
-            if (announcementIndex == -1)
-            {
-                return NotFound();
-            }
-
-            Announcement updatedAnnouncementWithId = new()
-            {
-                Id = id,
-                CategoryId = updatedAnnouncement.CategoryId,
-                Title = updatedAnnouncement.Title,
-                Description = updatedAnnouncement.Description,
-                Author = updatedAnnouncement.Author,
-            };
-
-            _announcements[announcementIndex] = updatedAnnouncementWithId;
-
-            string message = $"Announcement with ID {id} updated successfully!";
-            return Ok(message);
+            return NotFound();
         }
 
         /// <summary>
@@ -87,36 +71,24 @@ namespace AnnouncementPlatformAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteAnnouncement(Guid id)
         {
-            var existingAnnouncement = _announcements.FirstOrDefault(a => a.Id == id);
-            if (existingAnnouncement == null)
+            if (_announcementCollectionService.Delete(id))
             {
-                return NotFound();
+                return Ok("Announcement has been deleted!");
             }
-            else
-            {
-                _announcements.Remove(existingAnnouncement);
-            }
-
-            string message = $"Announcement with ID {id} deleted successfully!";
-            return Ok(message);
+            return NotFound();
         }
 
         /// <summary>
-        /// Partially Update Announcement(title and description).
+        /// Get announcements by category id.
         /// </summary>
-        [HttpPatch("{id}")]
-        public IActionResult UpdateTitleAndDescription(Guid id,
-            [FromBody] AnnouncementUpdateModel updateModel)
+        [HttpGet("category/{id}")]
+        public IActionResult GetAnnouncementsByCategoryId(string id)
         {
-            var announcementIndex = _announcements.FindIndex(a => a.Id == id);
-            if (announcementIndex == -1)
-            {
-                return NotFound();
+            var announcements = _announcementCollectionService.GetAnnouncementsByCategoryId(id);
+            if(announcements.Count != 0) { 
+                return Ok(announcements);
             }
-
-            _announcements[announcementIndex].Title = updateModel.Title;
-            _announcements[announcementIndex].Description = updateModel.Description;
-            return Ok("Announcement updated!");
+            return NotFound();
         }
     }
 }
