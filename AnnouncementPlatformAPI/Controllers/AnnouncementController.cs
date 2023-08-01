@@ -19,9 +19,9 @@ namespace AnnouncementPlatformAPI.Controllers
         /// Get Announcements.
         /// </summary>
         [HttpGet]
-        public IActionResult GetAnnouncements()
+        public async Task<IActionResult> GetAnnouncements()
         {
-            List<Announcement> Announcements = _announcementCollectionService.GetAll();
+            List<Announcement> Announcements = await _announcementCollectionService.GetAll();
             return Ok(Announcements);
         }
 
@@ -29,9 +29,9 @@ namespace AnnouncementPlatformAPI.Controllers
         /// Get Announcement by id.
         /// </summary>
         [HttpGet("{id}")]
-        public IActionResult GetAnnouncementById(Guid id)
+        public async Task<IActionResult> GetAnnouncementById(Guid id)
         {
-            var announcement = _announcementCollectionService.Get(id);
+            var announcement = await _announcementCollectionService.Get(id);
             if(announcement == null)
             {
                 return NotFound();
@@ -43,9 +43,9 @@ namespace AnnouncementPlatformAPI.Controllers
         /// Create a new announcement.
         /// </summary>
         [HttpPost]
-        public IActionResult CreateAnnouncement([FromBody] AnnouncementWithoudId announcement)
+        public async Task<IActionResult> CreateAnnouncement([FromBody] AnnouncementWithoudId announcement)
         {
-            if (_announcementCollectionService.Create(announcement))
+            if (await _announcementCollectionService.Create(announcement))
             {
                 return Ok("Announcement has been created!");
             }
@@ -56,9 +56,9 @@ namespace AnnouncementPlatformAPI.Controllers
         /// Update Announcement.
         /// </summary>
         [HttpPut("{id}")]
-        public IActionResult UpdateAnnouncement(Guid id, [FromBody] AnnouncementWithoudId updatedAnnouncement)
+        public async Task<IActionResult> UpdateAnnouncement(Guid id, [FromBody] AnnouncementWithoudId updatedAnnouncement)
         {
-            if(_announcementCollectionService.Update(id, updatedAnnouncement))
+            if(await _announcementCollectionService.Update(id, updatedAnnouncement))
             {
                 return Ok("Announcement has been updated!");
             }
@@ -69,9 +69,9 @@ namespace AnnouncementPlatformAPI.Controllers
         /// Delete Announcement.
         /// </summary>
         [HttpDelete("{id}")]
-        public IActionResult DeleteAnnouncement(Guid id)
+        public async Task<IActionResult> DeleteAnnouncement(Guid id)
         {
-            if (_announcementCollectionService.Delete(id))
+            if (await _announcementCollectionService.Delete(id))
             {
                 return Ok("Announcement has been deleted!");
             }
@@ -82,9 +82,9 @@ namespace AnnouncementPlatformAPI.Controllers
         /// Get announcements by category id.
         /// </summary>
         [HttpGet("category/{id}")]
-        public IActionResult GetAnnouncementsByCategoryId(string id)
+        public async Task<IActionResult> GetAnnouncementsByCategoryId(string id)
         {
-            var announcements = _announcementCollectionService.GetAnnouncementsByCategoryId(id);
+            var announcements = await _announcementCollectionService.GetAnnouncementsByCategoryId(id);
             if(announcements.Count != 0) { 
                 return Ok(announcements);
             }

@@ -1,33 +1,34 @@
 ﻿using AnnouncementPlatformAPI.Models;
+using AnnouncementPlatformAPI.Settings;
+using MongoDB.Driver;
 
 namespace AnnouncementPlatformAPI.Services
 {
     public class AnnouncementCollectionService : IAnnouncementCollectionService
     {
-        List<Announcement> _announcements = new List<Announcement> {
-            new Announcement { Id = Guid.NewGuid(), CategoryId = "1", Title = "First Announcement", Description = "First Announcement Description" , Author = "Author_1"},
-            new Announcement { Id = Guid.NewGuid(), CategoryId = "1", Title = "Second Announcement", Description = "Second Announcement Description", Author = "Author_1" },
-            new Announcement { Id = Guid.NewGuid(), CategoryId = "1", Title = "Third Announcement", Description = "Third Announcement Description", Author = "Author_2"  },
-            new Announcement { Id = Guid.NewGuid(), CategoryId = "1", Title = "Fourth Announcement", Description = "Fourth Announcement Description", Author = "Author_3"  },
-            new Announcement { Id = Guid.NewGuid(), CategoryId = "1", Title = "Fifth Announcement", Description = "Fifth Announcement Description", Author = "Author_4"  }
-        };
+        private readonly IMongoCollection<Announcement> _announcements;
 
-        public List<Announcement> GetAll()
+        public AnnouncementCollectionService(IMongoDBSettings settings)
         {
-            return _announcements;
+            var client = new MongoClient(settings.ConnectionString);
+            var database = client.GetDatabase(settings.DatabaseName);
+
+            _announcements = database.GetCollection<Announcement>(settings.AnnouncementsCollectionName);
         }
 
-        public Announcement Get(Guid id)
+        public async Task<List<Announcement>> GetAll()
         {
-            var announcementFound = _announcements.FirstOrDefault(a => a.Id == id);
-            if(announcementFound != null)
-            {
-                return announcementFound;
-            }
-            return new Announcement();
+            var result = await _announcements.FindAsync(announcement => true) ;
+            return result.ToList();
         }
 
-        public bool Create(AnnouncementWithoudId model)
+        public async Task<Announcement> Get(Guid id)
+        {
+            return (await _announcements.FindAsync(announcement => announcement.Id == id))
+                .FirstOrDefault();
+        }
+
+        public async Task<bool> Create(AnnouncementWithoudId model)
         {
             if (model == null)
             {
@@ -43,19 +44,13 @@ namespace AnnouncementPlatformAPI.Services
                 Author = model.Author,
             };
 
-            _announcements.Add(newAnnouncement);
+            await _announcements.InsertOneAsync(newAnnouncement);
             return true;
         }
 
-        public bool Update(Guid id, AnnouncementWithoudId model)
+        public async Task<bool> Update(Guid id, AnnouncementWithoudId model)
         {
             if (model == null)
-            {
-                return false;
-            }
-
-            var announcementIndex = _announcements.FindIndex(a => a.Id == id);
-            if (announcementIndex == -1)
             {
                 return false;
             }
@@ -69,29 +64,30 @@ namespace AnnouncementPlatformAPI.Services
                 Author = model.Author,
             };
 
-            _announcements[announcementIndex] = updatedAnnouncementWithId;
+            var result = await _announcements.ReplaceOneAsync(announcement => announcement.Id == id, updatedAnnouncementWithId);
+            if (!result.IsAcknowledged && result.ModifiedCount == 0)
+            {
+                await _announcements.InsertOneAsync(updatedAnnouncementWithId);
+                return false;
+            }
 
             return true;
         }
 
-        public bool Delete(Guid id)
+        public async Task<bool> Delete(Guid id)
         {
-            var existingAnnouncement = _announcements.FirstOrDefault(a => a.Id == id);
-            if (existingAnnouncement == null)
+            var result = await _announcements.DeleteOneAsync(announcement => announcement.Id == id);
+            if (!result.IsAcknowledged && result.DeletedCount == 0)
             {
                 return false;
             }
-            else
-            {
-                _announcements.Remove(existingAnnouncement);
-            }
             return true;
         }
 
-        public List<Announcement> GetAnnouncementsByCategoryId(string categoryId)
+        public async Task<List<Announcement>> GetAnnouncementsByCategoryId(string categoryId)
         {
-            var filteredAnnouncements = _announcements.Where(a => a.CategoryId == categoryId).ToList();
-            return filteredAnnouncements;
+            return (await _announcements.FindAsync(announcement => announcement.CategoryId == categoryId))
+                .ToList();
         }
     }
 }

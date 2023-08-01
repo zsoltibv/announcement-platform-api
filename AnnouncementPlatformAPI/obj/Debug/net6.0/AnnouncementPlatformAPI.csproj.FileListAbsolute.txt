@@ -66,3 +66,16 @@ C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\obj\Debug\ne
 C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\obj\Debug\net6.0\AnnouncementPlatformAPI.pdb
 C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\obj\Debug\net6.0\AnnouncementPlatformAPI.genruntimeconfig.cache
 C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\obj\Debug\net6.0\ref\AnnouncementPlatformAPI.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\AWSSDK.Core.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\AWSSDK.SecurityToken.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\DnsClient.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\MongoDB.Bson.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\MongoDB.Driver.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\MongoDB.Driver.Core.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\MongoDB.Libmongocrypt.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\SharpCompress.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\Snappier.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\ZstdSharp.dll
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\runtimes\linux\native\libmongocrypt.so
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\runtimes\osx\native\libmongocrypt.dylib
+C:\trimble-practica\AnnouncementPlatformAPI\AnnouncementPlatformAPI\bin\Debug\net6.0\runtimes\win\native\mongocrypt.dll

@@ -1,5 +1,7 @@
 using AnnouncementPlatformAPI.Models;
 using AnnouncementPlatformAPI.Services;
+using AnnouncementPlatformAPI.Settings;
+using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -20,6 +22,10 @@ builder.Services.AddSwaggerGen(c =>
 
 //Init Announcement Service
 builder.Services.AddSingleton<IAnnouncementCollectionService, AnnouncementCollectionService>();
+
+// Mongo DB Settings
+builder.Services.Configure<MongoDBSettings>(builder.Configuration.GetSection(nameof(MongoDBSettings)));
+builder.Services.AddSingleton<IMongoDBSettings>(sp => sp.GetRequiredService<IOptions<MongoDBSettings>>().Value);
 
 var app = builder.Build();
 
