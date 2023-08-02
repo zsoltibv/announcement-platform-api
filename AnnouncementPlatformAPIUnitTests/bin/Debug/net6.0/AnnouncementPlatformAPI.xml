@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AnnouncementPlatformAPI</name>
+    </assembly>
+    <members>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.GetAnnouncements">
+            <summary>
+            Get Announcements.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.GetAnnouncementById(System.Guid)">
+            <summary>
+            Get Announcement by id.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.CreateAnnouncement(AnnouncementPlatformAPI.Models.AnnouncementWithoudId)">
+            <summary>
+            Create a new announcement.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.UpdateAnnouncement(System.Guid,AnnouncementPlatformAPI.Models.AnnouncementWithoudId)">
+            <summary>
+            Update Announcement.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.DeleteAnnouncement(System.Guid)">
+            <summary>
+            Delete Announcement.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.AnnouncementController.GetAnnouncementsByCategoryId(System.String)">
+            <summary>
+            Get announcements by category id.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.GetCategories">
+            <summary>
+            Gets all categories.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.GetCategoryById(System.Int32)">
+            <summary>
+            Gets category by it's id.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.DeleteCategoryById(System.Int32)">
+            <summary>
+            Deletes category by id.
+            </summary>
+        </member>
+        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.AddCategory(AnnouncementPlatformAPI.Models.Category)">
+            <summary>
+            Adds a new category.
+            </summary>
+        </member>
+    </members>
+</doc>

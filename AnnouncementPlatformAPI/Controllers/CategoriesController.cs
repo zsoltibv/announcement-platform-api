@@ -9,9 +9,9 @@ namespace AnnouncementPlatformAPI.Controllers
     {
         public static List<Category> categories = new List<Category>
         {
-             new Category { Id = 1, Name="General"},
-             new Category { Id = 2, Name="Labs"},
-             new Category { Id = 3, Name="Courses"},
+             new Category { Id = Guid.NewGuid(), Name="General"},
+             new Category { Id = Guid.NewGuid(), Name="Labs"},
+             new Category { Id = Guid.NewGuid(), Name="Courses"},
         };
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace AnnouncementPlatformAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetCategoryById(int id)
         {
-            var category = categories.FirstOrDefault(c => c.Id == id);
+            var category = categories.FirstOrDefault(c => c.Id.Equals(id));
             if (category != null)
                 return Ok(category);
             return NotFound();
@@ -43,7 +43,7 @@ namespace AnnouncementPlatformAPI.Controllers
         [HttpDelete("{id}")]
         public IActionResult DeleteCategoryById(int id)
         {
-            var category = categories.FirstOrDefault(c => c.Id == id);
+            var category = categories.FirstOrDefault(c => c.Id.Equals(id));
             if (category != null) 
             { 
                 categories.Remove(category);
@@ -63,9 +63,7 @@ namespace AnnouncementPlatformAPI.Controllers
                 return BadRequest("Invalid data");
             }
 
-            int newId = categories.Count > 0 ? categories.Max(c => c.Id) + 1 : 1;
-
-            category.Id = newId;
+            category.Id = Guid.NewGuid();
             categories.Add(category);
 
             return Ok(category);

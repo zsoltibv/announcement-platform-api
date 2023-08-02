@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AnnouncementPlatformAPI", "AnnouncementPlatformAPI\AnnouncementPlatformAPI.csproj", "{E2B64580-44F3-416C-B82F-F318C970B2D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnnouncementPlatformAPIUnitTests", "AnnouncementPlatformAPIUnitTests\AnnouncementPlatformAPIUnitTests.csproj", "{FA62D90D-8DD4-42A6-B1A3-EA8B43BBAE71}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E2B64580-44F3-416C-B82F-F318C970B2D7} = {E2B64580-44F3-416C-B82F-F318C970B2D7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
