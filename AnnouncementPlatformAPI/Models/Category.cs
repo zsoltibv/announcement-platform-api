@@ -4,7 +4,7 @@ namespace AnnouncementPlatformAPI.Models
 {
     public class Category
     {
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [Required(ErrorMessage = "Name is required.")]
         [MaxLength(100, ErrorMessage = "Name cannot exceed 100 characters.")]

@@ -39,12 +39,12 @@
             Gets all categories.
             </summary>
         </member>
-        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.GetCategoryById(System.Int32)">
+        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.GetCategoryById(System.String)">
             <summary>
             Gets category by it's id.
             </summary>
         </member>
-        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.DeleteCategoryById(System.Int32)">
+        <member name="M:AnnouncementPlatformAPI.Controllers.CategoriesController.DeleteCategoryById(System.String)">
             <summary>
             Deletes category by id.
             </summary>
